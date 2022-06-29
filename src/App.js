@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
 import './App.css';
+import Questions from './components/Questions';
 
 class App extends React.Component {
   render() {

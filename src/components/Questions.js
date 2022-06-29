@@ -1,8 +1,10 @@
 import React from 'react';
+import Question from './Question';
 
 class Questions extends React.Component {
   state = {
     questions: [],
+    // currentIndex: 0,
   }
 
 componentDidMount = async () => {
@@ -18,22 +20,9 @@ componentDidMount = async () => {
 
 render() {
   const { questions } = this.state;
-  console.log(questions);
+  console.log(questions[0]);
   return (
-    <ul>
-      {questions.map((question) => (
-        <li key={ question.question }>
-          <p data-testid="question-category">
-            Categoria:
-            {question.category}
-          </p>
-          <p data-testid="question-text">
-            Pergunta:
-            {question.question}
-          </p>
-        </li>
-      ))}
-    </ul>
+    <Question question={ { ...questions[0] } } />
   );
 }
 }
