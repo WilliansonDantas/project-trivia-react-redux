@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Question extends React.Component {
   render() {
     const { question } = this.props;
-    console.log(question.incorrect_answers);
+    const { incorrect_answers: incorrects } = question;
     return (
       <>
         <p data-testid="question-category">
@@ -20,31 +20,17 @@ class Question extends React.Component {
           >
             {question.correct_answer}
           </button>
-          {/* {
-            question.incorrect_answers.map((incorrect) => (
-              <li key={ incorrect }>
-                <button type="button">{incorrect}</button>
-              </li>
+          {
+            incorrects.map((incorrect, index) => (
+              <button
+                key={ incorrect }
+                data-testid={ `wrong-answer-${index}` }
+                type="button"
+              >
+                {incorrect}
+              </button>
             ))
-          } */}
-          <button
-            type="button"
-            data-testid={ `wrong-answer-${0}` }
-          >
-            {[question.incorrect_answers][0]}
-          </button>
-          <button
-            type="button"
-            data-testid={ `wrong-answer-${1}` }
-          >
-            {[question.incorrect_answers][1]}
-          </button>
-          <button
-            type="button"
-            data-testid={ `wrong-answer-${2}` }
-          >
-            {[question.incorrect_answers][2]}
-          </button>
+          }
         </div>
       </>
     );
