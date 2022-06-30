@@ -1,14 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { handleAnswers } from '../Redux/Actions';
 
 class RightAnswer extends React.Component {
+  handleClick = () => {
+    const { dispatch } = this.props;
+    dispatch(handleAnswers());
+  }
+
+  getBtnColor = (isAnswered) => (
+    isAnswered ? '3px solid rgb(6, 240, 15)' : '3px solid black');
+
   render() {
-    const { option } = this.props;
+    const { option, isAnswered } = this.props;
+    console.log(isAnswered);
     return (
       <button
         type="button"
         data-testid="correct-answer"
+        style={ { border: this.getBtnColor(isAnswered) } }
+        onClick={ this.handleClick }
       >
         {option}
       </button>
@@ -17,7 +29,7 @@ class RightAnswer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAnswered: state.isAnswered,
+  isAnswered: state.game.isAnswered,
 });
 
 RightAnswer.propTypes = {
