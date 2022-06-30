@@ -13,9 +13,6 @@ class Game extends React.Component {
 componentDidMount = async () => {
   const { history } = this.props;
   const errorResponseCode = 3;
-  // BUSCAR TOKEN DO LOCAL STORAGE feito
-  // APLICAR TOKEN NA URL QUE FIZER O FETCH DAS PERGUNTAS
-  // CRIAR LÓGICA DE LOGOUT SE VIER TOKEN INVÁLIDO (CHAVE "response_code": "3" DA RESOSTA DA API)
   const token = localStorage.getItem('token');
   const APIresponse = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
   const results = await APIresponse.json();
