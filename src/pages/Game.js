@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Question from '../components/Question';
+import Timer from '../components/Timer';
 
 class Game extends React.Component {
   state = {
@@ -31,6 +32,7 @@ render() {
     <>
       <Header />
       {questions.length > 1 && <Question question={ { ...questions[0] } } />}
+      <Timer />
     </>
 
   );
