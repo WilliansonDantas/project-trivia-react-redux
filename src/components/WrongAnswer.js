@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class WrongAnswer extends React.Component {
   render() {
@@ -15,9 +16,13 @@ class WrongAnswer extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  isAnswered: state.isAnswered,
+});
+
 WrongAnswer.propTypes = {
   option: PropTypes.string,
   index: PropTypes.number,
 }.isRequired;
 
-export default WrongAnswer;
+export default connect(mapStateToProps)(WrongAnswer);

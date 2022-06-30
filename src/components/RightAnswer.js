@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class RightAnswer extends React.Component {
   render() {
@@ -15,8 +16,12 @@ class RightAnswer extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  isAnswered: state.isAnswered,
+});
+
 RightAnswer.propTypes = {
   option: PropTypes.string,
 }.isRequired;
 
-export default RightAnswer;
+export default connect(mapStateToProps)(RightAnswer);
