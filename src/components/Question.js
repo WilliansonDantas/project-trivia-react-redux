@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 
 class Question extends React.Component {
+  points = () => {}
+
+  wrongAnswer = () => null
+
   render() {
     const { question } = this.props;
     const {
@@ -15,12 +19,16 @@ class Question extends React.Component {
         key={ incorrect }
         id={ `wrong-answer-${index}` }
         borderStyle="3px solid red"
+        points={ this.wrongAnswer }
+        isCorrect="no"
       />));
     const generateCorrectAnswer = (<Answer
       option={ correct }
       key={ correct }
       id="correct-answer"
       borderStyle="3px solid rgb(6, 240, 15)"
+      points={ this.points }
+      isCorrect="yes"
     />);
     const answersList = [
       generateCorrectAnswer,
