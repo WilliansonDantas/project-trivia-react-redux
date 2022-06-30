@@ -10,11 +10,10 @@ class RightAnswer extends React.Component {
   }
 
   getBtnColor = (isAnswered) => (
-    isAnswered ? '3px solid rgb(6, 240, 15)' : '3px solid black');
+    isAnswered && '3px solid rgb(6, 240, 15)');
 
   render() {
     const { option, isAnswered } = this.props;
-    console.log(isAnswered);
     return (
       <button
         type="button"

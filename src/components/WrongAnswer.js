@@ -1,14 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { handleAnswers } from '../Redux/Actions';
 
 class WrongAnswer extends React.Component {
+  handleClick = () => {
+    const { dispatch } = this.props;
+    dispatch(handleAnswers());
+  }
+
+  getBtnColor = (isAnswered) => (
+    isAnswered && '3px solid red');
+
   render() {
-    const { option, index } = this.props;
+    const { option, index, isAnswered } = this.props;
     return (
       <button
         type="button"
         data-testid={ `wrong-answer-${index}` }
+        style={ { border: this.getBtnColor(isAnswered) } }
+        onClick={ this.handleClick }
       >
         {option}
       </button>
@@ -17,7 +28,7 @@ class WrongAnswer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAnswered: state.isAnswered,
+  isAnswered: state.game.isAnswered,
 });
 
 WrongAnswer.propTypes = {
