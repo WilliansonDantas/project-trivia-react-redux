@@ -1,4 +1,4 @@
-import { LOGIN_INFO } from '../Actions';
+import { LOGIN_INFO, SUM_PONTS } from '../Actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -14,6 +14,11 @@ const player = (state = INITIAL_STATE, action) => {
       ...state,
       name: action.payload.name,
       gravatarEmail: action.payload.email,
+    };
+  }
+  case SUM_PONTS: {
+    return {
+      score: state.score + action.payload,
     };
   }
   default: return state;

@@ -1,6 +1,7 @@
-import { BUTTON_WAS_PRESSED, DISABLED_BUTTONS, TIMEOUT } from '../Actions';
+import { BUTTON_WAS_PRESSED, DISABLED_BUTTONS, SAVE_QUESTION, TIMEOUT } from '../Actions';
 
 const INITIAL_STATE = {
+  question: [],
   isAnswered: false,
   disabledButtons: false,
   timer: 30,
@@ -8,6 +9,12 @@ const INITIAL_STATE = {
 
 const game = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case SAVE_QUESTION: {
+    return {
+      ...state,
+      question: action.payload,
+    };
+  }
   case BUTTON_WAS_PRESSED: {
     return {
       ...state,

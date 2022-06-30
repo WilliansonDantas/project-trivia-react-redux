@@ -4,21 +4,18 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Question from '../components/Question';
 import Timer from '../components/Timer';
+import { saveQuestion } from '../Redux/Actions';
 
 class Game extends React.Component {
-  state = {
-    questions: [],
-    // currentIndex: 0,
-  }
-
 componentDidMount = async () => {
-  const { history } = this.props;
+  const { history, dispatch } = this.props;
   const errorResponseCode = 3;
   const token = localStorage.getItem('token');
   const APIresponse = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
   const results = await APIresponse.json();
+  const questionsList = await results.results;
   if (results.response_code === 0) {
-    this.setState({ questions: results.results });
+    dispatch(saveQuestion(questionsList));
   }
   if (results.response_code === errorResponseCode) {
     history.push('/');
@@ -26,12 +23,12 @@ componentDidMount = async () => {
 }
 
 render() {
-  const { questions } = this.state;
+  const { question } = this.props;
 
   return (
     <>
       <Header />
-      {questions.length > 1 && <Question question={ { ...questions[0] } } />}
+      {question.length > 1 && <Question question={ { ...question[0] } } />}
       <Timer />
     </>
 
@@ -39,8 +36,12 @@ render() {
 }
 }
 
+const mapStateToProps = (state) => ({
+  question: state.game.question,
+});
+
 Game.propTypes = {
   history: PropTypes.func,
 }.isRequired;
 
-export default connect()(Game);
+export default connect(mapStateToProps)(Game);

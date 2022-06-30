@@ -15,8 +15,8 @@ class Timer extends React.Component {
   }
 
   componentDidUpdate = () => {
-    const { dispatch, timer } = this.props;
-    if (timer === TIME_LIMIT) {
+    const { dispatch, timer, isAnswered } = this.props;
+    if (timer === TIME_LIMIT || isAnswered === true) {
       clearInterval(this.intervalId);
       dispatch(disableButtons());
     }
@@ -34,6 +34,7 @@ class Timer extends React.Component {
 
 const mapStateToProps = (state) => ({
   timer: state.game.timer,
+  isAnswered: state.game.isAnswered,
 });
 
 Timer.propTypes = {
