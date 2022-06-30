@@ -9,16 +9,16 @@ class RightAnswer extends React.Component {
     dispatch(handleAnswers());
   }
 
-  getBtnColor = (isAnswered) => (
-    isAnswered && '3px solid rgb(6, 240, 15)');
+  getBtnColor = (isAnswered, borderStyle) => (
+    isAnswered && borderStyle);
 
   render() {
-    const { option, isAnswered } = this.props;
+    const { option, isAnswered, borderStyle, id } = this.props;
     return (
       <button
         type="button"
-        data-testid="correct-answer"
-        style={ { border: this.getBtnColor(isAnswered) } }
+        data-testid={ id }
+        style={ { border: this.getBtnColor(isAnswered, borderStyle) } }
         onClick={ this.handleClick }
       >
         {option}

@@ -1,17 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RightAnswer from './RightAnswer';
-import WrongAnswer from './WrongAnswer';
+import Answer from './Answer';
 
 class Question extends React.Component {
   render() {
     const { question } = this.props;
-    const { incorrect_answers: incorrects } = question;
-    const generateWrongAnswer = incorrects.map((incorrect, index) => (
-      <WrongAnswer option={ incorrect } index={ index } key={ index } />));
-    const answers = [
-      <RightAnswer option={ question.correct_answer } key={ 5 } />,
-      ...generateWrongAnswer,
+    const {
+      incorrect_answers: incorrects,
+      correct_answer: correct,
+    } = question;
+    const generateWrongAnswers = incorrects.map((incorrect, index) => (
+      <Answer
+        option={ incorrect }
+        key={ incorrect }
+        id={ `wrong-answer-${index}` }
+        borderStyle="3px solid red"
+      />));
+    const generateCorrectAnswer = (<Answer
+      option={ correct }
+      key={ correct }
+      id="correct-answer"
+      borderStyle="3px solid rgb(6, 240, 15)"
+    />);
+    const answersList = [
+      generateCorrectAnswer,
+      ...generateWrongAnswers,
     ];
     const half = 0.5;
     return (
@@ -24,7 +37,7 @@ class Question extends React.Component {
         </p>
         <div data-testid="answer-options">
           {/* Referência para algoritmo de randomização: https://www.w3docs.com/snippets/javascript/how-to-randomize-shuffle-a-javascript-array.html */}
-          {answers.sort(() => Math.random() - half).map((answer) => answer)}
+          {answersList.sort(() => Math.random() - half).map((answer) => answer)}
         </div>
       </>
     );
