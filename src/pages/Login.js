@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { saveLoginInfo } from '../Redux/Actions';
+import fetchToken from '../services/fetchToken';
 
 class Login extends React.Component {
     state = {
@@ -26,10 +27,7 @@ class Login extends React.Component {
       const { history, dispatch } = this.props;
       const { name, email } = this.state;
       const url = 'https://opentdb.com/api_token.php?command=request';
-      const token = await fetch(url)
-        .then((response) => response.json())
-        .then((data) => data.token)
-        .catch((error) => console.log(error));
+      const token = await fetchToken(url);
       localStorage.setItem('token', token);
       dispatch(saveLoginInfo(name, email));
       history.push('/game');
