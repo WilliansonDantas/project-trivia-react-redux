@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { handleAnswers } from '../Redux/Actions';
 
-class RightAnswer extends React.Component {
+class Answer extends React.Component {
   handleClick = () => {
     const { dispatch } = this.props;
     dispatch(handleAnswers());
@@ -31,8 +31,8 @@ const mapStateToProps = (state) => ({
   isAnswered: state.game.isAnswered,
 });
 
-RightAnswer.propTypes = {
+Answer.propTypes = {
   option: PropTypes.string,
 }.isRequired;
 
-export default connect(mapStateToProps)(RightAnswer);
+export default connect(mapStateToProps)(Answer);
