@@ -13,13 +13,14 @@ class Answer extends React.Component {
     isAnswered && borderStyle);
 
   render() {
-    const { option, isAnswered, borderStyle, id } = this.props;
+    const { option, isAnswered, borderStyle, id, disabledButtons } = this.props;
     return (
       <button
         type="button"
         data-testid={ id }
         style={ { border: this.getBtnColor(isAnswered, borderStyle) } }
         onClick={ this.handleClick }
+        disabled={ disabledButtons }
       >
         {option}
       </button>
@@ -29,6 +30,7 @@ class Answer extends React.Component {
 
 const mapStateToProps = (state) => ({
   isAnswered: state.game.isAnswered,
+  disabledButtons: state.game.disabledButtons,
 });
 
 Answer.propTypes = {
