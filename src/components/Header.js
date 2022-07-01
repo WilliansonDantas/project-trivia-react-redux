@@ -5,7 +5,7 @@ import gravatarImg from '../services/gravatar';
 
 class Header extends React.Component {
   render() {
-    const { name, gravatarEmail } = this.props;
+    const { name, gravatarEmail, score } = this.props;
     return (
       <header>
         <img
@@ -14,7 +14,7 @@ class Header extends React.Component {
           alt="imgGravatar"
         />
         <h3 data-testid="header-player-name">{ name }</h3>
-        <h3 data-testid="header-score">0</h3>
+        <h3 data-testid="header-score">{score}</h3>
       </header>
     );
   }
@@ -23,11 +23,13 @@ class Header extends React.Component {
 const mapStateToProps = (globalState) => ({
   name: globalState.player.name,
   gravatarEmail: globalState.player.gravatarEmail,
+  score: globalState.player.score,
 });
 
 Header.propTypes = {
   name: PropTypes.string.isRequired,
   gravatarEmail: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(Header);

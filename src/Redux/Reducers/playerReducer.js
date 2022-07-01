@@ -18,6 +18,7 @@ const player = (state = INITIAL_STATE, action) => {
   }
   case SUM_PONTS: {
     return {
+      ...state,
       score: state.score + action.payload,
     };
   }

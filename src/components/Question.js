@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 
 class Question extends React.Component {
-  points = () => {}
-
-  wrongAnswer = () => null
-
   render() {
     const { question } = this.props;
     const {
@@ -19,7 +15,6 @@ class Question extends React.Component {
         key={ incorrect }
         id={ `wrong-answer-${index}` }
         borderStyle="3px solid red"
-        points={ this.wrongAnswer }
         isCorrect="no"
       />));
     const generateCorrectAnswer = (<Answer
@@ -27,7 +22,6 @@ class Question extends React.Component {
       key={ correct }
       id="correct-answer"
       borderStyle="3px solid rgb(6, 240, 15)"
-      points={ this.points }
       isCorrect="yes"
     />);
     const answersList = [
@@ -38,10 +32,10 @@ class Question extends React.Component {
     return (
       <>
         <p data-testid="question-category">
-          {`Categoria: ${question.category}`}
+          {question.category}
         </p>
         <p data-testid="question-text">
-          {`Pergunta: ${question.question}`}
+          {question.question}
         </p>
         <div data-testid="answer-options">
           {/* Referência para algoritmo de randomização: https://www.w3docs.com/snippets/javascript/how-to-randomize-shuffle-a-javascript-array.html */}
