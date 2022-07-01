@@ -1,4 +1,4 @@
-import { LOGIN_INFO, SUM_PONTS } from '../Actions';
+import { LOGIN_INFO, SUM_PONTS, COUNT_ASSERTIONS } from '../Actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -20,6 +20,12 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: state.score + action.payload,
+    };
+  }
+  case COUNT_ASSERTIONS: {
+    return {
+      ...state,
+      assertions: state.assertions + 1,
     };
   }
   default: return state;
