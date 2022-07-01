@@ -23,12 +23,12 @@ componentDidMount = async () => {
 }
 
 render() {
-  const { question } = this.props;
+  const { questionsList } = this.props;
 
   return (
     <>
       <Header />
-      {question.length > 1 && <Question question={ { ...question[0] } } />}
+      {questionsList.length > 1 && <Question question={ { ...questionsList[0] } } />}
       <Timer />
     </>
 
@@ -37,7 +37,7 @@ render() {
 }
 
 const mapStateToProps = (state) => ({
-  question: state.game.question,
+  questionsList: state.game.questionsList,
 });
 
 Game.propTypes = {

@@ -10,8 +10,8 @@ class Answer extends React.Component {
     const TWO_POINTS = 2;
     const THREE_POINTS = 3;
     const MULTIPLIER = 10;
-    const { question } = this.props;
-    const { difficulty } = question[0];
+    const { questionsList } = this.props;
+    const { difficulty } = questionsList[0];
     if (difficulty === 'easy') {
       const totalPoints = MULTIPLIER + (timer * ONE_POINT);
       dispatch(sumPoints(totalPoints));
@@ -29,7 +29,6 @@ class Answer extends React.Component {
   handleClick = ({ target }) => {
     const { dispatch } = this.props;
     dispatch(handleAnswers());
-    console.log(target);
     if (target.id === 'yes') {
       this.countPoints();
     }
@@ -59,7 +58,7 @@ class Answer extends React.Component {
 const mapStateToProps = (state) => ({
   isAnswered: state.game.isAnswered,
   disabledButtons: state.game.disabledButtons,
-  question: state.game.question,
+  questionsList: state.game.questionsList,
   timer: state.game.timer,
 });
 
