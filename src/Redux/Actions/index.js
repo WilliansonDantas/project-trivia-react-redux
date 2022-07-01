@@ -4,6 +4,7 @@ export const DISABLED_BUTTONS = 'DISABLED_BUTTONS';
 export const TIMEOUT = 'TIMEOUT';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 export const SUM_PONTS = 'SUM_PONTS';
+export const NEXT_QUESTION = 'NEXT_QUESTION';
 
 export const saveLoginInfo = (name, email) => ({
   type: LOGIN_INFO,
@@ -33,4 +34,8 @@ export const timerAction = () => ({
 export const sumPoints = (questionPoints) => ({
   type: SUM_PONTS,
   payload: questionPoints,
+});
+
+export const goToNext = () => ({
+  type: NEXT_QUESTION,
 });
