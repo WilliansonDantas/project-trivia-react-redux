@@ -1,7 +1,11 @@
-import { BUTTON_WAS_PRESSED, DISABLED_BUTTONS, SAVE_QUESTION, TIMEOUT } from '../Actions';
+import {
+  BUTTON_WAS_PRESSED,
+  DISABLED_BUTTONS,
+  NEXT_QUESTION, SAVE_QUESTION, TIMEOUT } from '../Actions';
 
 const INITIAL_STATE = {
   questionsList: [],
+  currentIndex: 0,
   isAnswered: false,
   disabledButtons: false,
   timer: 30,
@@ -31,6 +35,14 @@ const game = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       disabledButtons: true,
+    };
+  }
+  case NEXT_QUESTION: {
+    return {
+      ...state,
+      currentIndex: state.currentIndex + 1,
+      isAnswered: false,
+      disabledButtons: false,
     };
   }
   default: return state;

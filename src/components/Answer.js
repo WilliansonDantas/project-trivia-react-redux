@@ -5,13 +5,12 @@ import { handleAnswers, sumPoints } from '../Redux/Actions';
 
 class Answer extends React.Component {
   countPoints = () => {
-    const { timer, dispatch } = this.props;
+    const { timer, dispatch, questionsList, currentIndex } = this.props;
     const ONE_POINT = 1;
     const TWO_POINTS = 2;
     const THREE_POINTS = 3;
     const MULTIPLIER = 10;
-    const { questionsList } = this.props;
-    const { difficulty } = questionsList[0];
+    const { difficulty } = questionsList[currentIndex];
     if (difficulty === 'easy') {
       const totalPoints = MULTIPLIER + (timer * ONE_POINT);
       dispatch(sumPoints(totalPoints));
@@ -28,6 +27,7 @@ class Answer extends React.Component {
 
   handleClick = ({ target }) => {
     const { dispatch } = this.props;
+    console.log(target);
     dispatch(handleAnswers());
     if (target.id === 'yes') {
       this.countPoints();
@@ -60,6 +60,7 @@ const mapStateToProps = (state) => ({
   disabledButtons: state.game.disabledButtons,
   questionsList: state.game.questionsList,
   timer: state.game.timer,
+  currentIndex: state.game.currentIndex,
 });
 
 Answer.propTypes = {

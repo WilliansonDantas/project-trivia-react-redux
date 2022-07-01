@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Question from '../components/Question';
 import Timer from '../components/Timer';
-import { saveQuestion } from '../Redux/Actions';
+import { saveQuestion, goToNext } from '../Redux/Actions';
 
 class Game extends React.Component {
 componentDidMount = async () => {
@@ -22,13 +22,34 @@ componentDidMount = async () => {
   }
 }
 
+getNextQuestion = () => {
+  const MAX_INDEX = 3;
+  const { dispatch, currentIndex, history } = this.props;
+  if (currentIndex > MAX_INDEX) {
+    history.push('/feedback');
+  }
+  dispatch(goToNext());
+}
+
 render() {
-  const { questionsList } = this.props;
+  const { questionsList, currentIndex, isAnswered } = this.props;
 
   return (
     <>
       <Header />
-      {questionsList.length > 1 && <Question question={ { ...questionsList[0] } } />}
+      {
+        questionsList.length > 1 && (
+          <Question question={ { ...questionsList[currentIndex] } } />
+        )
+      }
+      { isAnswered && (
+        <button
+          type="button"
+          data-testid="btn-next"
+          onClick={ this.getNextQuestion }
+        >
+          Next
+        </button>)}
       <Timer />
     </>
 
@@ -38,6 +59,8 @@ render() {
 
 const mapStateToProps = (state) => ({
   questionsList: state.game.questionsList,
+  currentIndex: state.game.currentIndex,
+  isAnswered: state.game.isAnswered,
 });
 
 Game.propTypes = {
