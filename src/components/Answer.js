@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { handleAnswers, sumPoints } from '../Redux/Actions';
+import { handleAnswers, sumPoints, countAssertions } from '../Redux/Actions';
 
 class Answer extends React.Component {
   countPoints = () => {
@@ -30,6 +30,7 @@ class Answer extends React.Component {
     console.log(target);
     dispatch(handleAnswers());
     if (target.id === 'yes') {
+      dispatch(countAssertions());
       this.countPoints();
     }
   }

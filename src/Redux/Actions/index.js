@@ -5,6 +5,7 @@ export const TIMEOUT = 'TIMEOUT';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 export const SUM_PONTS = 'SUM_PONTS';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
+export const COUNT_ASSERTIONS = 'COUNT_ASSERTIONS';
 
 export const saveLoginInfo = (name, email) => ({
   type: LOGIN_INFO,
@@ -38,4 +39,8 @@ export const sumPoints = (questionPoints) => ({
 
 export const goToNext = () => ({
   type: NEXT_QUESTION,
+});
+
+export const countAssertions = () => ({
+  type: COUNT_ASSERTIONS,
 });
