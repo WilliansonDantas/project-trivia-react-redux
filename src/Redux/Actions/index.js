@@ -6,6 +6,7 @@ export const SAVE_QUESTION = 'SAVE_QUESTION';
 export const SUM_PONTS = 'SUM_PONTS';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const COUNT_ASSERTIONS = 'COUNT_ASSERTIONS';
+export const RESET_GAME = 'RESET_GAME';
 
 export const saveLoginInfo = (name, email) => ({
   type: LOGIN_INFO,
@@ -43,4 +44,8 @@ export const goToNext = () => ({
 
 export const countAssertions = () => ({
   type: COUNT_ASSERTIONS,
+});
+
+export const resetGame = () => ({
+  type: RESET_GAME,
 });

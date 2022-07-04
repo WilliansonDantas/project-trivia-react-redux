@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { disableButtons, timerAction } from '../Redux/Actions';
+import { disableButtons, timerAction, handleAnswers } from '../Redux/Actions';
 
 const ONE_SECOND = 1000;
 const TIME_LIMIT = 0;
@@ -19,6 +19,12 @@ class Timer extends React.Component {
     if (timer === TIME_LIMIT || isAnswered === true) {
       clearInterval(this.intervalId);
       dispatch(disableButtons());
+      dispatch(handleAnswers());
+    } else {
+      clearInterval(this.intervalId);
+      this.intervalId = setInterval(() => {
+        dispatch(timerAction());
+      }, ONE_SECOND);
     }
   }
 
