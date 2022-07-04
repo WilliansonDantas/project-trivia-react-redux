@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import { resetGame } from '../Redux/Actions';
 
 class Feedback extends React.Component {
   redirectionLogin = () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    dispatch(resetGame());
     history.push('/');
   }
 

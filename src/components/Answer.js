@@ -27,7 +27,6 @@ class Answer extends React.Component {
 
   handleClick = ({ target }) => {
     const { dispatch } = this.props;
-    console.log(target);
     dispatch(handleAnswers());
     if (target.id === 'yes') {
       dispatch(countAssertions());

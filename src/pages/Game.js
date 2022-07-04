@@ -22,10 +22,24 @@ componentDidMount = async () => {
   }
 }
 
+savePlayerStats = () => {
+  const { player } = this.props;
+  const currentPlayer = [player];
+  const playersList = JSON.parse(localStorage.getItem('player'));
+  console.log(playersList);
+  if (playersList === null) {
+    localStorage.setItem('player', JSON.stringify(currentPlayer));
+  } else {
+    const updatedPlayerList = [...playersList, ...currentPlayer];
+    localStorage.setItem('player', JSON.stringify(updatedPlayerList));
+  }
+}
+
 getNextQuestion = () => {
   const MAX_INDEX = 3;
   const { dispatch, currentIndex, history } = this.props;
   if (currentIndex > MAX_INDEX) {
+    this.savePlayerStats();
     history.push('/feedback');
   }
   dispatch(goToNext());
@@ -61,6 +75,7 @@ const mapStateToProps = (state) => ({
   questionsList: state.game.questionsList,
   currentIndex: state.game.currentIndex,
   isAnswered: state.game.isAnswered,
+  player: state.player,
 });
 
 Game.propTypes = {

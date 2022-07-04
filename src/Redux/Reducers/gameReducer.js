@@ -1,7 +1,7 @@
 import {
   BUTTON_WAS_PRESSED,
   DISABLED_BUTTONS,
-  NEXT_QUESTION, SAVE_QUESTION, TIMEOUT } from '../Actions';
+  NEXT_QUESTION, SAVE_QUESTION, TIMEOUT, RESET_GAME } from '../Actions';
 
 const INITIAL_STATE = {
   questionsList: [],
@@ -43,6 +43,12 @@ const game = (state = INITIAL_STATE, action) => {
       currentIndex: state.currentIndex + 1,
       isAnswered: false,
       disabledButtons: false,
+      timer: 30,
+    };
+  }
+  case RESET_GAME: {
+    return {
+      ...INITIAL_STATE,
     };
   }
   default: return state;
